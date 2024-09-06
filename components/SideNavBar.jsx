@@ -1,6 +1,7 @@
 // components/SideNavBar.jsx
 
 "use client";
+import { useRouter } from 'next/navigation'
 
 import React from 'react';
 
@@ -8,6 +9,9 @@ const SideNavBar = () => {
   const handleButtonClick = (action) => {
     console.log(action);
   };
+  const router = useRouter()
+
+
 
   return (
     <div className="fixed top-0 left-0 w-48 bg-white text-black h-screen flex flex-col shadow-md z-40">
@@ -29,61 +33,61 @@ const SideNavBar = () => {
       <div className="flex-1 overflow-y-auto p-3">
         <div className="flex flex-col space-y-2">
           <button
-            onClick={() => handleButtonClick('Updates & Support')}
+            onClick={() => router.push('/Update')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Updates & Support
           </button>
           <button
-            onClick={() => handleButtonClick('Review Team Suggestion')}
+            onClick={() => router.push('/ReviewTeamSuggestion')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Review Team Suggestion
           </button>
           <button
-            onClick={() => handleButtonClick('Answers')}
+            onClick={() => router.push('/Answers')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Answers
           </button>
           <button
-            onClick={() => handleButtonClick('Summary')}
+            onClick={() => router.push('/Summary')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Summary
           </button>
           <button
-            onClick={() => handleButtonClick('Payments')}
+            onClick={() => router.push('/Payments')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Payments
           </button>
           <button
-            onClick={() => handleButtonClick('Your Margin')}
+            onClick={() => router.push('/YourMargin')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Your Margin
           </button>
           <button
-            onClick={() => handleButtonClick('Your Profile')}
+            onClick={() => router.push('/YourProfile')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Your Profile
           </button>
           <button
-            onClick={() => handleButtonClick('Request Payment')}
+            onClick={() => router.push('/RequestPayment')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Request Payment
           </button>
           <button
-            onClick={() => handleButtonClick('Mentorship Calls')}
+            onClick={() =>router.push('/MentorshipCalls')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Mentorship Calls
           </button>
           <button
-            onClick={() => handleButtonClick('Call History')}
+            onClick={() => router.push('/CallHistory')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Call History

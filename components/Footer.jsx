@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-white text-black py-4 flex justify-center items-center">
       <p className="text-sm">
-        Chekias - All rights reserved
+        Checkias - All rights reserved
       </p>
     </footer>
   );
