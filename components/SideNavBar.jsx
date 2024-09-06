@@ -14,7 +14,7 @@ const SideNavBar = () => {
       {/* Logo Section */}
       <div className="flex items-center justify-center p-3 bg-white-200 border-b border-gray-300">
         <img
-          src="/path-to-your-logo.png" // Replace with the path to your logo
+          src="https://cdn.pixabay.com/photo/2016/12/27/13/10/logo-1933884_640.png" // Replace with the path to your logo
           alt="Logo"
           className="w-12 h-12 rounded-full object-cover"
         />

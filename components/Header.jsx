@@ -26,7 +26,7 @@ const Header = () => {
         {/* Profile Picture and Dropdown Section */}
         <div className="relative flex items-center">
           <img
-            src="" // Replace with your profile picture URL
+            src="https://cdn.pixabay.com/photo/2016/12/27/13/10/logo-1933884_640.png" // Replace with your profile picture URL
             alt="Profile"
             className="w-10 h-10 rounded-full border-2 border-gray-300"
           />
