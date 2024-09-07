@@ -1,10 +1,8 @@
 import React from 'react'
-
+import Notes from '@/components/Home/Notes'
 const page = () => {
   return (
-    <div>
-      <h1>hi</h1>
-    </div>
+    <Notes/>
   )
 }
 

@@ -1,10 +1,8 @@
 import React from 'react'
-
+import MAW from '@/components/Home/MAW'
 const page = () => {
   return (
-    <div>
-      <h1>hi</h1>
-    </div>
+    <MAW/>
   )
 }
 

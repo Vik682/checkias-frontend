@@ -1,10 +1,8 @@
 import React from 'react'
-
+import Videos from '@/components/Home/Videos'
 const page = () => {
   return (
-    <div>
-      <h1>hi</h1>
-    </div>
+   <Videos/>
   )
 }
 

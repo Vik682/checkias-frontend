@@ -1,9 +1,9 @@
 import React from 'react'
-
+import Careers from '@/components/Home/Careers'
 const page = () => {
   return (
     <div>
-      <h1>hi</h1>
+      <Careers/>
     </div>
   )
 }

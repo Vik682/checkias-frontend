@@ -1,9 +1,9 @@
 import React from 'react'
-
+import Csat from '@/components/Home/Csat'
 const page = () => {
   return (
     <div>
-      <h1>hi</h1>
+     <Csat/> 
     </div>
   )
 }

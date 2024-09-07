@@ -1,10 +1,8 @@
 import React from 'react'
-
+import ToppersCopies from '@/components/Home/ToppersCopies'
 const page = () => {
   return (
-    <div>
-      <h1>hi</h1>
-    </div>
+    <ToppersCopies/>
   )
 }
 

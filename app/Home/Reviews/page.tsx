@@ -1,10 +1,8 @@
 import React from 'react'
-
+import Reviews from '@/components/Home/Reviews'
 const page = () => {
   return (
-    <div>
-      <h1>hi</h1>
-    </div>
+    <Reviews/>
   )
 }
 

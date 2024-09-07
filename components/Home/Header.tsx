@@ -1,19 +1,15 @@
 "use client";
-
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 const Header = () => {
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
-  const [isNewDropdownOpen, setNewDropdownOpen] = useState(false);
-  const [isOtpSent, setOtpSent] = useState(false); // New state for OTP sent
+  const [isOtpSent, setOtpSent] = useState(false);
 
+  // Toggle the login modal's visibility
   const toggleLoginModal = () => {
     setLoginModalOpen(!isLoginModalOpen);
-    setOtpSent(false); // Reset OTP state when modal is closed
-  };
-
-  const toggleNewDropdown = () => {
-    setNewDropdownOpen(!isNewDropdownOpen);
+    setOtpSent(false); // Reset OTP state when modal is opened
   };
 
   // Handle Send OTP button click
@@ -22,12 +18,13 @@ const Header = () => {
     setOtpSent(true);
   };
 
-  // Handle Continue button click (currently does nothing)
+  // Handle Continue button click
   const handleContinue = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Add logic for what happens after OTP is entered
     console.log('OTP submitted');
   };
+
+  const router = useRouter();
 
   return (
     <div className="bg-white shadow-md flex flex-col h-25 px-4 py-3">
@@ -35,13 +32,13 @@ const Header = () => {
       <div className="flex items-center justify-between h-1/4">
         <div className="flex items-center">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/IAS_Symbol.svg/220px-IAS_Symbol.svg.png"
+            src=""
             alt="IAS Symbol"
-            className="h-8 w-8" // Increased logo size
+            className="h-8 w-8" // Adjust logo size
           />
         </div>
         <button
-          onClick={toggleLoginModal}
+          onClick={toggleLoginModal} // Added click handler to open login modal
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
           Login
@@ -51,12 +48,19 @@ const Header = () => {
       {/* Bottom section with navigation buttons */}
       <div className="flex-grow flex items-end">
         <ul className="flex flex-wrap space-x-4 ml-auto">
+          <li>
+            <button
+              onClick={() => router.push('/Home/EvaluationPlans')}
+              className="font-medium text-violet-500 hover:text-blue-600">
+              Evaluation Plans
+            </button>
+          </li>
           <li className="relative">
             <button
-              onClick={toggleNewDropdown}
+              onClick={() => router.push('/Home/NewPrelims')}
               className="bg-orange-100 text-orange-500 px-3 py-1 rounded-sm font-medium hover:bg-orange-200 flex items-center"
             >
-              New
+              New Prelims
               <svg
                 className="ml-2 w-4 h-4"
                 xmlns="http://www.w3.org/2000/svg"
@@ -67,40 +71,70 @@ const Header = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            {isNewDropdownOpen && (
-              <ul className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
-                <li>
-                  <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left">
-                    Prelims
-                  </button>
-                </li>
-                {/* Add more items if needed */}
-              </ul>
-            )}
           </li>
           <li>
-            <button className="font-medium hover:text-blue-600">CSAT</button>
+            <button
+              onClick={() => router.push('/Home/Csat')}
+              className="font-medium hover:text-blue-600"
+            >
+              CSAT
+            </button>
           </li>
           <li>
-            <button className="font-medium hover:text-blue-600">Notes</button>
+            <button
+              onClick={() => router.push('/Home/Notes')}
+              className="font-medium hover:text-blue-600"
+            >
+              Notes
+            </button>
           </li>
           <li>
-            <button className="font-medium hover:text-blue-600">MAW</button>
+            <button
+              onClick={() => router.push('/Home/MAW')}
+              className="font-medium hover:text-blue-600"
+            >
+              MAW
+            </button>
           </li>
           <li>
-            <button className="font-medium hover:text-blue-600">Videos</button>
+            <button
+              onClick={() => router.push('/Home/Videos')}
+              className="font-medium hover:text-blue-600"
+            >
+              Videos
+            </button>
           </li>
           <li>
-            <button className="font-medium hover:text-blue-600">Toppers Copies</button>
+            <button
+              onClick={() => router.push('/Home/ToppersCopies')}
+              className="font-medium hover:text-blue-600"
+            >
+              Toppers Copies
+            </button>
           </li>
           <li>
-            <button className="font-medium hover:text-blue-600">Contact Us</button>
+            <button
+              onClick={() => router.push('/Home/ContactUs')}
+              className="font-medium hover:text-blue-600"
+            >
+              Contact Us
+            </button>
           </li>
           <li>
-            <button className="font-medium hover:text-blue-600">Reviews</button>
+            <button
+              onClick={() => router.push('/Home/Reviews')}
+              className="font-medium hover:text-blue-600"
+            >
+              Reviews
+            </button>
           </li>
           <li>
-            <button className="font-medium hover:text-blue-600">Careers</button>
+            <button
+              onClick={() => router.push('/Home/Careers')}
+              className="font-medium hover:text-blue-600"
+            >
+              Careers
+            </button>
           </li>
         </ul>
       </div>
