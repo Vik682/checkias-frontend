@@ -1,8 +1,8 @@
 import React from 'react'
-import Update from '@/components/Update'
+import Payments from '@/components/EvaluatorDashboard/Payments'
 const page = () => {
   return (
-   <Update/>
+    <Payments/>
   )
 }
 

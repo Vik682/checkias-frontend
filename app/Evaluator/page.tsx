@@ -1,8 +1,8 @@
 import React from 'react'
-import Answers from '@/components/Answers'
+import Home from '@/components/EvaluatorDashboard/Home'
 const page = () => {
   return (
-    <Answers/>
+    <Home/>
   )
 }
 

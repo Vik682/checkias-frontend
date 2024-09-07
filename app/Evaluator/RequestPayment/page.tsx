@@ -1,5 +1,5 @@
 import React from 'react'
-import RequestPayment from '@/components/RequestPayment'
+import RequestPayment from '@/components/EvaluatorDashboard/RequestPayment'
 const page = () => {
   return (
     <RequestPayment/>

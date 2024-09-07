@@ -1,8 +1,8 @@
 import React from 'react'
-import YourMargin from '@/components/YourMargin'
+import Summary from '@/components/EvaluatorDashboard/Summary'
 const page = () => {
   return (
-    <YourMargin/>
+    <Summary/>
   )
 }
 

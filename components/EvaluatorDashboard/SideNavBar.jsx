@@ -33,61 +33,61 @@ const SideNavBar = () => {
       <div className="flex-1 overflow-y-auto p-3">
         <div className="flex flex-col space-y-2">
           <button
-            onClick={() => router.push('/Update')}
+            onClick={() => router.push('/Evaluator/Update')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Updates & Support
           </button>
           <button
-            onClick={() => router.push('/ReviewTeamSuggestion')}
+            onClick={() => router.push('/Evaluator/ReviewTeamSuggestion')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Review Team Suggestion
           </button>
           <button
-            onClick={() => router.push('/Answers')}
+            onClick={() => router.push('/Evaluator/Answers')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Answers
           </button>
           <button
-            onClick={() => router.push('/Summary')}
+            onClick={() => router.push('/Evaluator/Summary')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Summary
           </button>
           <button
-            onClick={() => router.push('/Payments')}
+            onClick={() => router.push('/Evaluator/Payments')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Payments
           </button>
           <button
-            onClick={() => router.push('/YourMargin')}
+            onClick={() => router.push('/Evaluator/YourMargin')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Your Margin
           </button>
           <button
-            onClick={() => router.push('/YourProfile')}
+            onClick={() => router.push('/Evaluator/YourProfile')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Your Profile
           </button>
           <button
-            onClick={() => router.push('/RequestPayment')}
+            onClick={() => router.push('/Evaluator/RequestPayment')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Request Payment
           </button>
           <button
-            onClick={() =>router.push('/MentorshipCalls')}
+            onClick={() =>router.push('/Evaluator/MentorshipCalls')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Mentorship Calls
           </button>
           <button
-            onClick={() => router.push('/CallHistory')}
+            onClick={() => router.push('/Evaluator/CallHistory')}
             className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left"
           >
             Call History

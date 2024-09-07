@@ -1,8 +1,8 @@
 import React from 'react'
-import MentorshipCalls from '@/components/MentorshipCalls'
+import Answers from '@/components/EvaluatorDashboard/Answers'
 const page = () => {
   return (
-    <MentorshipCalls/>
+    <Answers/>
   )
 }
 

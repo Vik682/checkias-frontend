@@ -1,5 +1,5 @@
 import React from 'react'
-import ReviewTeamSuggestion from '@/components/ReviewTeamSuggestion'
+import ReviewTeamSuggestion from '@/components/EvaluatorDashboard/ReviewTeamSuggestion'
 const page = () => {
   return (
     <ReviewTeamSuggestion/>
