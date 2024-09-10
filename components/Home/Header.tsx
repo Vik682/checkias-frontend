@@ -1,30 +1,63 @@
 "use client";
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import axios from 'axios'; // Ensure axios is installed and imported
 
 const Header = () => {
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const [isOtpSent, setOtpSent] = useState(false);
+  const [email, setEmail] = useState('');
+  const [otp, setOtp] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  
+  const router = useRouter();
 
   // Toggle the login modal's visibility
   const toggleLoginModal = () => {
     setLoginModalOpen(!isLoginModalOpen);
     setOtpSent(false); // Reset OTP state when modal is opened
+    setError(null);
+    setMessage(null);
   };
 
   // Handle Send OTP button click
-  const handleSendOtp = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSendOtp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setOtpSent(true);
+    setError(null);
+    setMessage(null);
+
+    try {
+      await axios.post('/api/send-otp', { email }); // Replace with your API endpoint
+      setOtpSent(true);
+      setMessage('OTP sent successfully to your email');
+    } catch (err: any) {
+      const errorMessage = err.response?.data?.error || 'Error sending OTP';
+      setError(errorMessage);
+      console.error('Error sending OTP:', err);
+    }
   };
 
   // Handle Continue button click
-  const handleContinue = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleContinue = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('OTP submitted');
-  };
+    setError(null);
+    setMessage(null);
 
-  const router = useRouter();
+    try {
+      const response = await axios.post('/api/verify-otp', { email, otp }); // Replace with your API endpoint
+      if (response.status === 200) {
+        setMessage('OTP verified successfully');
+        router.push('/Evaluator'); // Redirect after successful OTP verification
+      } else {
+        setError('Invalid OTP');
+      }
+    } catch (err: any) {
+      const errorMessage = err.response?.data?.error || 'Error verifying OTP';
+      setError(errorMessage);
+      console.error('Error verifying OTP:', err);
+    }
+  };
 
   return (
     <div className="bg-white shadow-md flex flex-col h-25 px-4 py-3">
@@ -174,6 +207,8 @@ const Header = () => {
                   <input
                     type="email"
                     id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                   />
                 </div>
@@ -189,6 +224,8 @@ const Header = () => {
                     <input
                       type="text"
                       placeholder="Enter OTP"
+                      value={otp}
+                      onChange={(e) => setOtp(e.target.value)}
                       className="mb-4 mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     />
                     <button
@@ -200,6 +237,8 @@ const Header = () => {
                   </div>
                 )}
               </form>
+              {error && <p className="text-red-500 mt-2">{error}</p>}
+              {message && <p className="text-green-500 mt-2">{message}</p>}
             </div>
           </div>
         </div>

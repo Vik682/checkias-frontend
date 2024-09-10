@@ -1,37 +1,31 @@
 // app/page.tsx
+"use client";
 import axios from 'axios';
+import { useState } from 'react';
+import base_url from '@/services/baseurl';
 
-interface ApiResponse {
-  id: number;
-  name: string;
-  // Add other fields based on your API response
-}
+const Page = () => {
+  const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
 
-// The Page component is now an async function
-const Page = async () => {
-  let data: ApiResponse[] = [];
-  let error: string | null = null;
-
-  try {
-    const response = await axios.get<ApiResponse[]>('http://localhost:8000/tp_copy/tc/');
-    data = response.data;
-  } catch (err) {
-    error = 'Error fetching data';
-    console.error('Error fetching data:', err);
-  }
+  const sendEmail = async () => {
+    try {
+      const response = await axios.post(`${base_url}/mail/send/`, {
+        email: 'vy8882164@gmail.com',
+      });
+      setMessage('Email request sent successfully');
+    } catch (err) {
+      setError('Error sending email');
+      console.error('Error sending email:', err);
+    }
+  };
 
   return (
     <div>
-      <h1>Data from Django API</h1>
-      {error ? (
-        <p>{error}</p>
-      ) : (
-        <ul>
-          {data.map(item => (
-            <li key={item.id}>{item.name}</li>
-          ))}
-        </ul>
-      )}
+      <h1>Send Email</h1>
+      <button onClick={sendEmail}>Send Email</button>
+      {error && <p>{error}</p>}
+      {message && <p>{message}</p>}
     </div>
   );
 };
