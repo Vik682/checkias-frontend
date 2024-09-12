@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import axios from 'axios'; // Ensure axios is installed and imported
+import Link from 'next/link'
 
 const Header = () => {
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
@@ -162,12 +163,11 @@ const Header = () => {
             </button>
           </li>
           <li>
-            <button
-              onClick={() => router.push('/Home/Careers')}
+            <Link href="https://jobs.checkias.com"
               className="font-medium hover:text-blue-600"
             >
               Careers
-            </button>
+            </Link>
           </li>
         </ul>
       </div>
