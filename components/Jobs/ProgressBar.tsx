@@ -10,7 +10,7 @@ const steps = ["Information", "Roles", "Assignment", "Complete"];
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ currentStep }) => {
   return (
-    <div className="bg-white rounded-2xl md:mr-5 md:w-1/3 h-full py-2 px-2 md:py-4 mb-5 md:mb-0 flex flex-col justify-center">
+    <div className="bg-white rounded-2xl md:mr-5 w-full h-full py-2 px-3 md:py-4 mb-5 md:mb-0 flex flex-col justify-center">
       <div className="flex flex-row md:flex-col w-full">
         <ul className="md:pr-5 flex flex-row md:flex-col w-full justify-between">
           {steps.map((step, index) => (

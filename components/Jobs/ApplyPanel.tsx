@@ -5,12 +5,12 @@ import ProgressBar from '@/components/Jobs/ProgressBar'; // Ensure the path is c
 
 interface FormState {
   name: string;
-  prelimsAttempts: string;
-  interviewsAppeared: string;
+  prelimsAttempts: number | null;
+  interviewsAppeared: number | null;
   mobileNumber: string;
-  mainsAttempts: string;
+  mainsAttempts: number | null;
   optionalSubject: string;
-  securedRank: string;
+  securedRank: number | null;
   roles: {
     evaluator: boolean;
     mentor: boolean;
@@ -28,12 +28,12 @@ const steps = ["Information", "Roles", "Assignment", "Complete"];
 const ApplyPanel: React.FC = () => {
   const [formState, setFormState] = useState<FormState>({
     name: '',
-    prelimsAttempts: '',
-    interviewsAppeared: '',
+    prelimsAttempts: null,
+    interviewsAppeared: null,
     mobileNumber: '',
-    mainsAttempts: '',
+    mainsAttempts: null,
     optionalSubject: '',
-    securedRank: '',
+    securedRank: null,
     roles: {
       evaluator: false,
       mentor: false,

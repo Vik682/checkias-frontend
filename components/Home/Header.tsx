@@ -81,7 +81,7 @@ const Header = () => {
 
       {/* Bottom section with navigation buttons */}
       <div className="flex-grow flex items-end">
-        <ul className="flex flex-wrap space-x-4 ml-auto">
+        <ul className="flex flex-wrap space-x-10 ml-auto">
           <li>
             <button
               onClick={() => router.push('/Home/EvaluationPlans')}
