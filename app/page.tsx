@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import base_url from '@/services/baseurl';
 
+
 const Page = () => {
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -21,7 +22,7 @@ const Page = () => {
   };
 
   return (
-    <div>
+    <div className='h-full'>
       <h1>Send Email</h1>
       <button onClick={sendEmail}>Send Email</button>
       {error && <p>{error}</p>}
