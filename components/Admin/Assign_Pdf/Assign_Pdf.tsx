@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import EvaluatorProfileWindow from './EvaluatorProfileWindow';  // Import the evaluator profile window
 import StudentProfileWindow from './StudentProfileWindow';
 import PdfDetailWindow from './PdfDetailWindow';  // Import the PDF detail window
+import SearchAndPagination from '../../common/SearchAndPagination';  // Import the SearchAndPagination component
 
 // Dummy evaluators list for the button to select
 const evaluators = [
@@ -119,56 +120,58 @@ const AssignPdf = () => {
 
   return (
     <div className="ml-48 p-6">
-      {/* Title and Table Header */}
+      {/* Title */}
       <h1 className="text-2xl font-semibold mb-4">Assign Evaluators to PDF Submissions</h1>
 
-      {/* Table of Requests */}
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <table className="min-w-full border-collapse">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="border px-4 py-2">Serial Number</th>
-              <th className="border px-4 py-2">Student ID</th>
-              <th className="border px-4 py-2">PDF ID</th>
-              <th className="border px-4 py-2">Assign Evaluator</th>
-            </tr>
-          </thead>
-          <tbody>
-            {requests.map((request, index) => (
-              <tr key={request.id} className="hover:bg-gray-100">
-                <td className="border px-4 py-2">{index + 1}</td>
-                <td className="border px-4 py-2">
-                  <span
-                    className="text-blue-500 cursor-pointer"
-                    onClick={() => handleStudentClick(request.studentId)}
-                  >
-                    {request.studentId}
-                  </span>
-                </td>
-                <td className="border px-4 py-2">
-                  <span
-                    className="text-blue-500 cursor-pointer"
-                    onClick={() => handlePdfClick(request.pdfId)} // Open PDF detail window on click
-                  >
-                    {request.pdfId}
-                  </span>
-                </td>
-                <td className="border px-4 py-2">
-                  {/* Button to assign evaluator */}
-                  <button
-                    className="px-4 py-2 bg-blue-500 text-white rounded-md"
-                    onClick={() => handleEvaluatorClick(request.evaluator ? parseInt(request.evaluator) : evaluators[0].id)}
-                  >
-                    Assign Evaluator
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+      {/* Search and Pagination Component */}
+      <SearchAndPagination
+        items={requests}
+        itemsPerPage={5}
+        onItemSelect={(item) => {
+          // Handle item selection, like opening a profile or assigning an evaluator
+          console.log("Selected item:", item);
+        }}
+        renderItem={(item, index) => {
+          return (
+            <>
+              <td className="border px-4 py-2">{item.id}</td>
+              <td className="border px-4 py-2">
+                <span
+                  className="text-blue-500 cursor-pointer"
+                  onClick={() => handleStudentClick(item.studentId)}
+                >
+                  {item.studentId}
+                </span>
+              </td>
+              <td className="border px-4 py-2">
+                <span
+                  className="text-blue-500 cursor-pointer"
+                  onClick={() => handlePdfClick(item.pdfId)}
+                >
+                  {item.pdfId}
+                </span>
+              </td>
+              <td className="border px-4 py-2">
+                {/* Button to assign evaluator */}
+                <button
+                  className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                  onClick={() => handleEvaluatorClick(item.evaluator ? parseInt(item.evaluator) : evaluators[0].id)}
+                >
+                  Assign Evaluator
+                </button>
+              </td>
+            </>
+          );
+        }}
+        renderTableHeader={() => (
+          <>
+            <th className="border px-4 py-2">Serial Number</th>
+            <th className="border px-4 py-2">Student ID</th>
+            <th className="border px-4 py-2">PDF ID</th>
+            <th className="border px-4 py-2">Assign Evaluator</th>
+          </>
+        )}
+      />
 
       {/* Evaluator Profile Window */}
       {isEvaluatorProfileOpen && selectedEvaluator && (
@@ -198,3 +201,4 @@ const AssignPdf = () => {
 };
 
 export default AssignPdf;
+ 
