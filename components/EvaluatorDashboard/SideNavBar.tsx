@@ -2,10 +2,17 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
-const SideNavBar = () => {
+// Define types for the Button component props
+interface ButtonProps {
+  label: string;
+  path: string;
+}
+
+const SideNavBar: React.FC = () => {
   const router = useRouter();
-  
-  const Button = ({ label, path }) => (
+
+  // Updated Button component with proper types
+  const Button: React.FC<ButtonProps> = ({ label, path }) => (
     <button
       onClick={() => router.push(path)}
       className="w-full text-black py-2 px-4 rounded-md shadow-md hover:bg-blue-500 text-left overflow-hidden text-ellipsis whitespace-nowrap"
@@ -14,11 +21,18 @@ const SideNavBar = () => {
     </button>
   );
 
-  const buttons = [
-    { label: 'Jobs Verify', path: '/Admin/Jobs_Verify' },
-    { label: 'Toppers Review', path: '/Admin/Toppers_Review' },
-    { label: 'Payment Request', path: '/Admin/Payment_Request' },
-    { label: 'Assign Pdf', path: '/Admin/Assign_Pdf' },
+  // Buttons array with inferred types for label and path
+  const buttons: { label: string; path: string }[] = [
+    { label: 'Updates & Support', path: '/Evaluator/Update' },
+    { label: 'Review Team Suggestion', path: '/Evaluator/ReviewTeamSuggestion' },
+    { label: 'Answers', path: '/Evaluator/Answers' },
+    { label: 'Summary', path: '/Evaluator/Summary' },
+    { label: 'Payments', path: '/Evaluator/Payments' },
+    { label: 'Your Margin', path: '/Evaluator/YourMargin' },
+    { label: 'Your Profile', path: '/Evaluator/YourProfile' },
+    { label: 'Request Payment', path: '/Evaluator/RequestPayment' },
+    { label: 'Mentorship Calls', path: '/Evaluator/MentorshipCalls' },
+    { label: 'Call History', path: '/Evaluator/CallHistory' },
   ];
 
   return (
@@ -37,3 +51,4 @@ const SideNavBar = () => {
 };
 
 export default SideNavBar;
+

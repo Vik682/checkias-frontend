@@ -1,5 +1,3 @@
-// components/Header.jsx
-
 "use client"; // This directive tells Next.js that this is a Client Component
 
 import React, { useState } from 'react';
@@ -38,7 +36,7 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Dropdown Menu */}
+        {/* Dropdown Menu (Now aligned to the rightmost corner) */}
         {isOpen && (
           <div className="absolute right-0 mt-12 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
             <button
