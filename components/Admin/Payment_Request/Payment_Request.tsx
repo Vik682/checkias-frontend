@@ -86,7 +86,7 @@ const PaymentRequest = () => {
   };
 
   return (
-    <div className="ml-48 p-6">
+    <div >
       {/* Filter and Search Bar at the top right */}
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center">
