@@ -1,26 +1,44 @@
 'use client'
 
 import { useState, ChangeEvent, FormEvent } from 'react';
-import handler  from '@/api/login/route';
+import axios from 'axios';
 
 const Login = () => {
   const [isOtpSent, setIsOtpSent] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [otp, setOtp] = useState<string>('');
 
-  const handleEmailSubmit = (e: FormEvent) => {
+  const handleEmailSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    handler(email)
-    // // Simulate OTP sending process
-    // console.log('OTP sent to email:', email);
-    setIsOtpSent(true); // OTP has been sent
+
+    try {
+      const response = await axios.post('/api/login', { email });
+
+      if (response.status !== 200) {
+        throw new Error('Failed to send OTP');
+      }
+
+      console.log(response.data); // Handle response as necessary
+      setIsOtpSent(true); // OTP has been sent
+    } catch (error) {
+      console.error('Error sending OTP:', error);
+    }
   };
 
-  const handleOtpSubmit = (e: FormEvent) => {
+  const handleOtpSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    handler(email,otp)
-    // // Handle OTP verification here
-    // console.log('OTP submitted:', otp);
+
+    try {
+      const response = await axios.post('/api/login', { email, otp });
+
+      if (response.status !== 200) {
+        throw new Error('Failed to verify OTP');
+      }
+
+      console.log(response.data); // Handle response as necessary
+    } catch (error) {
+      console.error('Error verifying OTP:', error);
+    }
   };
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -83,7 +101,7 @@ const Login = () => {
                 required
               />
               <p className="text-gray-600 text-xs mt-1">
-                Please check the spam/promotions folder in case you donot see the OTP.
+                Please check the spam/promotions folder in case you do not see the OTP.
               </p>
             </div>
           )}
