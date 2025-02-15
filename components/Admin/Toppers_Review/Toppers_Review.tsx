@@ -61,7 +61,7 @@ const ToppersReview = () => {
   };
 
   return (
-    <div className="ml-48 p-6">
+    <div >
       {/* Filter and Search Bar */}
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center">

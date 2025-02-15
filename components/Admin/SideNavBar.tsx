@@ -27,6 +27,8 @@ const SideNavBar: React.FC = () => {
     { label: 'Toppers Review', path: '/Admin/Toppers_Review' },
     { label: 'Payment Request', path: '/Admin/Payment_Request' },
     { label: 'Assign Pdf', path: '/Admin/Assign_Pdf' },
+    { label: 'Comments', path: '/Admin/Comments' },
+    { label: 'Reply ContactUs', path: '/Admin/ContactUs' },
   ];
 
   return (

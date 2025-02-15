@@ -119,7 +119,7 @@ const AssignPdf = () => {
   };
 
   return (
-    <div className="ml-48 p-6">
+    <div >
       {/* Title */}
       <h1 className="text-2xl font-semibold mb-4">Assign Evaluators to PDF Submissions</h1>
 

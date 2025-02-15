@@ -17,11 +17,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-      <Header/>
-      <SideNavBar/>
-        {children}
-      <Footer />
+      <body className="flex">
+        {/* Sidebar */}
+        <SideNavBar />
+        
+        {/* Main Content Section (Dynamic Content Area) */}
+        <div className="flex-1 flex flex-col">
+          {/* Header */}
+          <Header />
+          
+          {/* Main Content */}
+          <main className="ml-48 p-6">{children}</main>
+
+          {/* Footer */}
+          <Footer />
+        </div>
       </body>
     </html>
   );
