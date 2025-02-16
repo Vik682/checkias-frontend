@@ -12,7 +12,8 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/api/login', { email });
+      const response = await axios.post('/api/login/',{ email, endpoint: 'send-otp' });
+      
 
       if (response.status !== 200) {
         throw new Error('Failed to send OTP');
@@ -29,7 +30,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/api/login', { email, otp });
+      const response = await axios.post('/api/login/', { email, otp ,endpoint:'verify-otp'});
 
       if (response.status !== 200) {
         throw new Error('Failed to verify OTP');

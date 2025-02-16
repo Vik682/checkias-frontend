@@ -1,16 +1,15 @@
 // pages/api/login/router.ts
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
 
+// Helper function to send OTP to email
 const sendOtpToEmail = async (email: string) => {
   try {
-    // Sending a POST request to your Django backend to send OTP
-    const response = await axios.post('http://localhost:8000/api/send_otp/', { email });
-    return response.data; // Assuming the Django backend responds with success
+    const response = await axios.post('http://127.0.0.1:8000/', { email });
+    return response.data;
   } catch (error: unknown) {
-    // Type error as AxiosError or any
     if (axios.isAxiosError(error)) {
-      console.error('Axios Error while sending OTP: 1', error.message);
+      console.error('Axios Error while sending OTP:', error.message);
       throw new Error('Failed to send OTP');
     } else {
       console.error('General Error while sending OTP:', error);
@@ -22,7 +21,7 @@ const sendOtpToEmail = async (email: string) => {
 const verifyOtp = async (email: string, otp: string) => {
   try {
     // Sending a POST request to verify OTP in Django backend
-    const response = await axios.post('http://localhost:8000/api/verify_otp/', { email, otp });
+    const response = await axios.post('http://localhost:8000/', { email, otp });
     return response.data; // Assuming Django returns success or failure
   } catch (error: unknown) {
     // Type error as AxiosError or any
@@ -36,42 +35,46 @@ const verifyOtp = async (email: string, otp: string) => {
   }
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log(abc);
-  
-  if (req.method === 'POST') {
-    const { email, otp } = req.body;
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const { email, endpoint } = body;
 
-    if (otp) {
-      // If OTP is provided, we verify it
-      try {
-        const result = await verifyOtp(email, otp);
-        return res.status(200).json(result); // Return response from Django backend
-      } catch (error: unknown) {
-        if (axios.isAxiosError(error)) {
-          console.error('OTP verification failed (AxiosError):', error.message);
-        } else {
-          console.error('OTP verification failed (General Error):', error);
-        }
-        return res.status(500).json({ message: 'OTP verification failed', error: (error instanceof Error ? error.message : 'Unknown error') });
-      }
-    } else {
-      // If no OTP, send OTP
+    if (endpoint === 'send-otp') {
       try {
         const result = await sendOtpToEmail(email);
-        return res.status(200).json(result); // Return response from Django backend
+        // Return a response with status 200 and the result data
+        return NextResponse.json(result, { status: 200 });
       } catch (error: unknown) {
-        if (axios.isAxiosError(error)) {
-          console.error('Failed to send OTP (AxiosError):', error.message);
-        } else {
-          console.error('Failed to send OTP (General Error):', error);
-        }
-        return res.status(500).json({ message: 'Failed to send OTP', error: (error instanceof Error ? error.message : 'Unknown error') });
+        // Return error response with status 500
+        return NextResponse.json(
+          { message: 'Failed to send OTP', error: error instanceof Error ? error.message : 'Unknown error' },
+          { status: 500 }
+        );
       }
+    } else if (endpoint === 'verify-otp') {
+      try {
+        const { otp } = body;
+        const result = await verifyOtp(email, otp);
+        // Return a response with status 200 and the result data
+        return NextResponse.json(result, { status: 200 });
+      } catch (error: unknown) {
+        // Return error response with status 500
+        return NextResponse.json(
+          { message: 'Failed to verify OTP', error: error instanceof Error ? error.message : 'Unknown error' },
+          { status: 500 }
+        );
+      }
+    } else {
+      return NextResponse.json(
+        { message: 'Unrecognized endpoint', error: 'Unknown error' },
+        { status: 500 }
+      );
     }
-  } else {
-    res.status(405).json({ message: 'Method Not Allowed' });
+  } catch (error: unknown) {
+    // Handle errors by checking for message and returning a 500 status
+    const errorMessage = error instanceof Error ? error.message : JSON.stringify(error);
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
-};
-
-export default handler;
+}
+  
