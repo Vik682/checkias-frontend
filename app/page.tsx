@@ -3,24 +3,21 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 
-
 const Login = () => {
   const [isOtpSent, setIsOtpSent] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [otp, setOtp] = useState<string>('');
-
+    
   const handleEmailSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
       const response = await axios.post('/api/login/',{ email, endpoint: 'send-otp' });
       
-
       if (response.status !== 200) {
         throw new Error('Failed to send OTP');
       }
-
-      console.log(response.data); // Handle response as necessary
+     
       setIsOtpSent(true); // OTP has been sent
     } catch (error) {
       console.error('Error sending OTP:', error);
@@ -35,10 +32,7 @@ const Login = () => {
 
       if (response.status !== 200) {
         throw new Error('Failed to verify OTP');
-      }
-
-      console.log(response.data); // Handle response as necessary
-    } catch (error) {
+      }} catch (error) {
       console.error('Error verifying OTP:', error);
     }
   };
@@ -71,7 +65,7 @@ const Login = () => {
               />
             </svg>
           </div>
-          <h2 className="text-2xl font-semibold text-blue-600 ml-2">login page</h2>
+          <h2 className="text-2xl font-semibold text-blue-600 ml-2">Login Page</h2>
         </div>
         <form onSubmit={isOtpSent ? handleOtpSubmit : handleEmailSubmit}>
           <div className="mb-4">
